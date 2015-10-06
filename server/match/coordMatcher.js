@@ -52,7 +52,7 @@ coordMatcher.prototype._encodeAddress = function (addressString) {
 coordMatcher.prototype._getCoords = function (addressString) {
 
   var url = "https://maps.googleapis.com/maps/api/geocode/json?address=" + this._encodeAddress(addressString) +  "&key=" + apiKey;
-
+  console.log(url);
   return new Promise(function(resolve, reject) {
 
     https.get(url, function (res) {

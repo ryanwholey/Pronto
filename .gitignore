@@ -42,3 +42,5 @@ node_modules/
 client-web/bower_components/
 client-mobile/www/lib/
 
+ryans start script:
+rstart.sh

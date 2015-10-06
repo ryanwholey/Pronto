@@ -1,7 +1,7 @@
-angular.module('kwiki', [
-  'kwiki.load',
-  'kwiki.auth',
-  'kwiki.chat',
+angular.module('Pronto', [
+  'Pronto.load',
+  'Pronto.auth',
+  'Pronto.chat',
   'ngRoute'
 ])
 

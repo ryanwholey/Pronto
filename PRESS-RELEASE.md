@@ -2,7 +2,7 @@
  
 ## Heading ##
 
-kwiki™
+Pronto™
 
 ## Sub-Heading ##
 
@@ -23,7 +23,7 @@ Make the spare time people have during their day exciting and fun by meeting a n
 
 ## Quote from You ##
 
-“With kwiki, you’ll never be bored!”
+“With Pronto, you’ll never be bored!”
 
 ## How to Get Started ##
 
@@ -35,7 +35,7 @@ Simply sign in and meet up with nearby friendly people right away!
 
 ## Closing and Call to Action ##
 
-Go to kwiki.com or download the app today.
+Go to Pronto.com or download the app today.
 
 
 

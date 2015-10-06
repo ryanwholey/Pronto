@@ -1,4 +1,4 @@
-angular.module('kwiki.auth', [])
+angular.module('Pronto.auth', [])
 
 .factory('AuthFactory', function ($http, $state, $window, $rootScope, SocketFactory) {
   var AuthFact = {};
@@ -27,7 +27,7 @@ angular.module('kwiki.auth', [])
       method: 'POST',
       url: $rootScope.host + '/logout'
     }).then(function (res) {
-      $window.localStorage.removeItem('com.kwiki');
+      $window.localStorage.removeItem('com.Pronto');
       $state.go('login');
       // delete $rootScope.chatRoomId;
       // delete $rootScope.user;
@@ -39,7 +39,7 @@ angular.module('kwiki.auth', [])
   };
 
   AuthFact.isAuth = function () {
-    return $window.localStorage.getItem('com.kwiki');
+    return $window.localStorage.getItem('com.Pronto');
   };
 
   return AuthFact;
@@ -66,7 +66,7 @@ angular.module('kwiki.auth', [])
     };
 
     AuthFactory.checkUser(userObject).then(function (res) {
-      $window.localStorage.setItem('com.kwiki', JSON.stringify(res.data));
+      $window.localStorage.setItem('com.Pronto', JSON.stringify(res.data));
       $rootScope.user = res.data;
 
       $state.go('match');

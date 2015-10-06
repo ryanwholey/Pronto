@@ -1,4 +1,4 @@
-# Kwiki API Documentation
+# Pronto API Documentation
 
 ## Table of Contents
 
@@ -102,7 +102,7 @@ This module contains helper functions for session creation and validation.
 ```
 server/match
 ```
-The process by which users are matched to eachother for chatroom creation. The matching system is interfaced by Match Controller and is implemented by Match Model. The Match Model will use a Matcher to match users. This implementation of Kwiki utilizes the Coordinate Matcher, however other Matchers may be used in its place.
+The process by which users are matched to eachother for chatroom creation. The matching system is interfaced by Match Controller and is implemented by Match Model. The Match Model will use a Matcher to match users. This implementation of Pronto utilizes the Coordinate Matcher, however other Matchers may be used in its place.
 
 ### MatchController
 ```

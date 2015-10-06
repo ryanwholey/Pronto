@@ -1,7 +1,7 @@
 var config = {
 
   development: {
-    dbpath: 'mongodb://localhost/kwikidev',
+    dbpath: 'mongodb://localhost/Prontodev',
     port: 3000,
     api_keys: {
       geocoding: process.env.APIKEY_GEOCODING,

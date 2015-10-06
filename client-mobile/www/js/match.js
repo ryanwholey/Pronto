@@ -1,4 +1,4 @@
-angular.module('kwiki.match', [])
+angular.module('Pronto.match', [])
 
 .factory('MatchFactory', ['$state', 'SocketFactory', '$window', '$rootScope', function ($state, SocketFactory, $window, $rootScope) {
   var matchFact = {};

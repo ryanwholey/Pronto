@@ -9,7 +9,7 @@
 describe('Front-end Authentication', function(){
   var $rootScope, $location, $window, $httpBackend, Users, $scope;
 
-  beforeEach(module('kwiki'));
+  beforeEach(module('Pronto'));
   beforeEach(inject(function ($injector){
 
 
@@ -39,7 +39,7 @@ describe('Front-end Authentication', function(){
   after(function () {
     $httpBackend.verifyNoOutstandingExpectation();
     $httpBackend.verifyNoOutstandingRequest();
-    $window.localStorage.removeItem('com.kwiki');
+    $window.localStorage.removeItem('com.Pronto');
     //restore fake server
     //restor xhr
     //restore fake DB
@@ -73,7 +73,7 @@ describe('Front-end Authentication', function(){
     $scope.addUser('JT', 'password');
     $httpBackend.flush();
     //verify that local storage has user
-    expect($window.localStorage.getItem('com.kwiki')).to.equal(JSON.stringify(user));
+    expect($window.localStorage.getItem('com.Pronto')).to.equal(JSON.stringify(user));
     
   });
 
@@ -86,7 +86,7 @@ describe('Front-end Authentication', function(){
     $scope.checkUser('JT', 'password');
     $httpBackend.flush();
     //verify that local storage has user
-    expect($window.localStorage.getItem('com.kwiki')).to.equal(JSON.stringify(user));
+    expect($window.localStorage.getItem('com.Pronto')).to.equal(JSON.stringify(user));
   });
 
   it('Should be able to logout', function () {
@@ -104,7 +104,7 @@ describe('Front-end Authentication', function(){
     $httpBackend.flush();
     
     //verify that local storgage user is destroyed
-    expect($window.localStorage.getItem('com.kwiki')).to.equal(null);
+    expect($window.localStorage.getItem('com.Pronto')).to.equal(null);
 
   });
 });

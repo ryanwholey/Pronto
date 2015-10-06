@@ -4,7 +4,7 @@
   "description": "setting up Prontos",
   "main": "server/server.js",
   "scripts": {
-    "start": "nodemon server/server.js",
+    "start": "./bashStart.sh",
     "postinstall": "bower install",
     "test": "grunt test"
   },

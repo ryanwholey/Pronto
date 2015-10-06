@@ -4,7 +4,7 @@
   "description": "setting up kwikis",
   "main": "server/server.js",
   "scripts": {
-    "start": "node server/server.js",
+    "start": "nodemon server/server.js",
     "postinstall": "bower install",
     "test": "grunt test"
   },

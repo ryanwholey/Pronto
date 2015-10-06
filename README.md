@@ -1,12 +1,12 @@
 [![Stories in Ready](https://badge.waffle.io/Ambiguous-Cicada/Ambiguous-Cicada.png?label=ready&title=Ready)](https://waffle.io/Ambiguous-Cicada/Ambiguous-Cicada)
 
-# Kwiki
+# Pronto
 
-Kwiki is a mobile chat app that brings closeby users together.
+Pronto is a mobile chat app that brings closeby users together.
 
 Refer to our [Documentation](DOCS.md) for internal details of our app.
 
-## Original Kwiki Team
+## Original Pronto Team
 
   - __Product Owner__: Daniel O'Leary
   - __Scrum Master__: JT Knox

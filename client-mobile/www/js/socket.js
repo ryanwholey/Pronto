@@ -1,4 +1,4 @@
-angular.module('kwiki.socket', [])
+angular.module('Pronto.socket', [])
 
 .factory('SocketFactory', ['$location', function ($location) {
   var socketFact = {};

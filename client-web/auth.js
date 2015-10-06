@@ -1,4 +1,4 @@
-angular.module('kwiki.auth', [])
+angular.module('Pronto.auth', [])
 
 .factory('Users', function ($http, $location, $window) {
   var addUser = function (userObject) {
@@ -22,7 +22,7 @@ angular.module('kwiki.auth', [])
       method: 'POST',
       url: '/logout'
     }).then(function (res) {
-      $window.localStorage.removeItem('com.kwiki');
+      $window.localStorage.removeItem('com.Pronto');
       $location.path('/login');
     })
     .catch(function (err) {
@@ -31,7 +31,7 @@ angular.module('kwiki.auth', [])
   };
 
   var isAuth = function () {
-    return $window.localStorage.getItem('com.kwiki');
+    return $window.localStorage.getItem('com.Pronto');
   }
 
   return {
@@ -63,7 +63,7 @@ angular.module('kwiki.auth', [])
     };
 
     Users.checkUser(userObject).then(function (res) {
-      $window.localStorage.setItem('com.kwiki', JSON.stringify(res.data));
+      $window.localStorage.setItem('com.Pronto', JSON.stringify(res.data));
       $rootScope.user = res.data;
 
       $location.path('/loading');

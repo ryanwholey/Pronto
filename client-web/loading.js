@@ -1,4 +1,4 @@
-angular.module('kwiki.load', [])
+angular.module('Pronto.load', [])
 
 .factory('LoadFactory', ['$location', 'SocketFactory', '$window', '$rootScope', function ($location, SocketFactory, $window, $rootScope) {
   var loadFact = {};

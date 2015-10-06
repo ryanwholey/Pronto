@@ -1,7 +1,7 @@
 {
-  "name": "kwiki",
+  "name": "Pronto",
   "version": "1.0.0",
-  "description": "setting up kwikis",
+  "description": "setting up Prontos",
   "main": "server/server.js",
   "scripts": {
     "start": "node server/server.js",

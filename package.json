@@ -8,7 +8,7 @@
     "postinstall": "bower install",
     "test": "grunt test"
   },
-  "homepage": "https://github.com/nirajvora/Ambiguous-Cicada",
+  "homepage": "https://github.com/Ambiguous-Cicada/Ambiguous-Cicada",
   "engines": {
     "node": "4.1.0"
   },
@@ -20,10 +20,6 @@
   "license": "ISC",
   "bugs": {
     "url": "https://github.com/Ambiguous-Cicada/Ambiguous-Cicada/issues"
-  },
-  "homepage": "https://github.com/Ambiguous-Cicada/Ambiguous-Cicada",
-  "engines": {
-    "node": "4.1.0"
   },
   "dependencies": {
     "bcrypt": "^0.8.5",
@@ -39,6 +35,7 @@
     "mongo": "^0.1.0",
     "mongoose": "^4.1.8",
     "morgan": "^1.6.1",
+    "shelljs": "^0.5.3",
     "socket.io": "^1.3.7"
   },
   "devDependencies": {

@@ -8,6 +8,7 @@
 angular.module('Pronto', [
   'ionic',
   'Pronto.auth',
+  'Pronto.events',
   'Pronto.match',
   'Pronto.socket',
   'Pronto.chat'
@@ -86,6 +87,12 @@ angular.module('Pronto', [
     url: '/chat',
     templateUrl: 'templates/chat.html',
     controller: 'ChatCtrl'
+  })
+
+  .state('events', {
+    url: '/events',
+    templateUrl: 'templates/events.html',
+    controller: 'EventsCtrl'
   });
 
   // if none of the above states are matched, use this as the fallback

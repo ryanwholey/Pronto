@@ -100,4 +100,12 @@ coordMatcher.prototype._getDistance = function(coordsA, coordsB) {
   return dist;
 };
 
+coordMatcher.prototype._getMidpoint = function(coordsA, coordsB) {
+  var midpoint = {};
+  midpoint.lng = (coordsA.lng + coordsB.lng) / 2;
+  midpoint.lat = (coordsA.lat + coordsB.lat) / 2;
+  
+  return midpoint;
+};
+
 module.exports = coordMatcher;

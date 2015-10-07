@@ -22,7 +22,11 @@ coordMatcher.prototype.match = function(users) {
       for (var j = i+1; j < users.length; j++) {
 
         if(this._isMatch(users[i], users[j])){
-          resolve([ users[i], users[j] ]);
+          var result = {
+            users: [ users[i], users[j] ],
+            location: this._getMidpoint(users[i].coords, users[j].coords)
+          }
+          resolve(result);
         }
 
       }
@@ -36,7 +40,6 @@ coordMatcher.prototype._isMatch = function(userA, userB) {
 };
 
 coordMatcher.prototype._encodeAddress = function (addressString) {
-
   //all special characters and their respective url encodings
   var specials = {
     " ": "%20", "#": "%23", "$": "%24", "%": "%25", "&": "%26", "@": "%40", "`": "%60", "/": "%2F", ":": "%3A",
@@ -44,6 +47,7 @@ coordMatcher.prototype._encodeAddress = function (addressString) {
     "{": "%7B", "|": "%7C", "}": "%7D", "~": "%7E", "\“": "%22", "‘": "%27", "+": "%2B", ",": "%2C",
   };
 
+  addressString = addressString || 'lol';
   //replace all special characters in addressString with their url encodings and return the encoded string
   return addressString.split('').map(function (char) {
     return specials[char] || char;
@@ -53,7 +57,7 @@ coordMatcher.prototype._encodeAddress = function (addressString) {
 coordMatcher.prototype._getCoords = function (addressString) {
 
   var url = "https://maps.googleapis.com/maps/api/geocode/json?address=" + this._encodeAddress(addressString) +  "&key=" + apiKey;
-  console.log(url);
+  
   return new Promise(function(resolve, reject) {
 
     https.get(url, function (res) {
@@ -99,6 +103,14 @@ coordMatcher.prototype._getDistance = function(coordsA, coordsB) {
   var dist = R * c;
 
   return dist;
+};
+
+coordMatcher.prototype._getMidpoint = function(coordsA, coordsB) {
+  var midpoint = {};
+  midpoint.lng = (coordsA.lng + coordsB.lng) / 2;
+  midpoint.lat = (coordsA.lat + coordsB.lat) / 2;
+  
+  return midpoint;
 };
 
 module.exports = coordMatcher;

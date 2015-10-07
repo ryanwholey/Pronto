@@ -68,9 +68,8 @@ angular.module('Pronto.auth', [])
     AuthFactory.checkUser(userObject).then(function (res) {
       $window.localStorage.setItem('com.Pronto', JSON.stringify(res.data));
       $rootScope.user = res.data;
-      $rootScope.user.coords = $rootScope.coords
-      console.log($rootScope.user);
-      $state.go('match');
+      $rootScope.user.coords = $rootScope.coords;
+      $state.go('load');
     });
   };
 

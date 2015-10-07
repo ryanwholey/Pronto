@@ -3,7 +3,7 @@ var Message = require('./chatModel.js').Message;
 
 var chatController = {};
 
-chatController.createChat = function(users) {
+chatController.createChat = function(users, location) {
   usersDbObj = users.map(function(user) {
     return {
       id: user.id,
@@ -13,7 +13,8 @@ chatController.createChat = function(users) {
 
   Chatroom.create({
     users: usersDbObj,
-    messages: []
+    messages: [],
+    location: JSON.stringify(location)
   }, function(err, chatroom) {
     if(err){
       throw new Error(err);

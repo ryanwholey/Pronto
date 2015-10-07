@@ -37,4 +37,6 @@ angular.module('Pronto.match', [])
     $rootScope.disableButton = false;
     AuthFactory.logOut();
   };
+  $scope.connect();
+  $scope.submit();
 }]);

@@ -21,7 +21,11 @@ coordMatcher.prototype.match = function(users) {
       for (var j = i+1; j < users.length; j++) {
 
         if(this._isMatch(users[i], users[j])){
-          resolve([ users[i], users[j] ]);
+          var result = {
+            users: [ users[i], users[j] ],
+            location: this._getMidpoint(users[i].coords, users[j].coords)
+          }
+          resolve(result);
         }
 
       }
@@ -52,7 +56,7 @@ coordMatcher.prototype._encodeAddress = function (addressString) {
 coordMatcher.prototype._getCoords = function (addressString) {
 
   var url = "https://maps.googleapis.com/maps/api/geocode/json?address=" + this._encodeAddress(addressString) +  "&key=" + apiKey;
-  console.log(url);
+  
   return new Promise(function(resolve, reject) {
 
     https.get(url, function (res) {

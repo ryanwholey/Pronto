@@ -51,11 +51,11 @@ MatchModel.prototype._isDuplicate = function(user) {
 MatchModel.prototype._match = function() {
   if(this._size >= this._matcher.roomSize){
     this._matcher.match(this.users)
-      .then(function (users) {
-        for (var i = 0; i < users.length; i++) {
-          this.leave(users[i]);
+      .then(function (result) {
+        for (var i = 0; i < result.users.length; i++) {
+          this.leave(result.users[i]);
         }
-        chatController.createChat(users);
+        chatController.createChat(result.users, result.location);
       }.bind(this));
   }
 };

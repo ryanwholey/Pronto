@@ -16,7 +16,8 @@ var ChatroomSchema = new Schema({
   messages: [{
     type: ObjectId,
     ref: 'messages'
-  }]
+  }],
+  location: String
 });
 
 var ChatModel = {};

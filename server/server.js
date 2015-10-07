@@ -42,6 +42,7 @@ io.sockets.on('connection', function(socket){
 io.of('/match').on('connection', function (socket) {
   console.log(socket.id + "connected to /match");
   socket.on('matching', function (data) {
+    console.log('server', data);
     matchCtrl.add(data, function (chatRoomId) {
       socket.emit('matched', chatRoomId);
     });

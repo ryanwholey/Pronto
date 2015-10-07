@@ -14,6 +14,7 @@ angular.module('Pronto', [
 ])
 
 .run(function($ionicPlatform, $rootScope) {
+  $rootScope.user = {};
   $rootScope.host = 'http://localhost:3000';
   $ionicPlatform.ready(function() {
     // Hide the accessory bar by default (remove this to show the accessory bar above the keyboard
@@ -27,6 +28,10 @@ angular.module('Pronto', [
       // org.apache.cordova.statusbar required
       StatusBar.styleLightContent();
     }
+    navigator.geolocation.getCurrentPosition(function(data){
+      $rootScope.coords = {lat: data.coords.latitude, lng: data.coords.longitude};
+    });
+
   });
 
 })

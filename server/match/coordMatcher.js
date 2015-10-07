@@ -9,14 +9,15 @@ var coordMatcher = function(roomSize, maxDist) {
 coordMatcher.prototype.preMatch = function(user) {
   return this._getCoords(user.address)
     .then(function(coords) {
-      user.coords = coords;
+      // console.log('>>>>>',user);
+      console.log(user.coords);
       return user;
     });
 };
 
 coordMatcher.prototype.match = function(users) {
   return new Promise(function (resolve, reject) {
-
+    //may need to refactor to find any match, not just adjacent match
     for (var i = 0; i < users.length; i++) {
       for (var j = i+1; j < users.length; j++) {
 

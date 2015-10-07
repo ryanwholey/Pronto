@@ -1,3 +1,4 @@
+ var shell = require('shelljs');
  module.exports = function(grunt) { 
 
   grunt.loadNpmTasks('grunt-karma');
@@ -14,5 +15,13 @@
   });
 
   grunt.registerTask('test', ['karma:single']);
+  
+  grunt.registerTask('pull', function() {
+    var c = shell.exec('git pull --rebase upstream master').code;
+    if(c !== 0) {
+      shell.exec('npm install');
+      shell.exec('bower install');
+    }
+  });
 
 };

@@ -40,7 +40,6 @@ coordMatcher.prototype._isMatch = function(userA, userB) {
 };
 
 coordMatcher.prototype._encodeAddress = function (addressString) {
-
   //all special characters and their respective url encodings
   var specials = {
     " ": "%20", "#": "%23", "$": "%24", "%": "%25", "&": "%26", "@": "%40", "`": "%60", "/": "%2F", ":": "%3A",
@@ -48,6 +47,7 @@ coordMatcher.prototype._encodeAddress = function (addressString) {
     "{": "%7B", "|": "%7C", "}": "%7D", "~": "%7E", "\“": "%22", "‘": "%27", "+": "%2B", ",": "%2C",
   };
 
+  addressString = addressString || 'lol';
   //replace all special characters in addressString with their url encodings and return the encoded string
   return addressString.split('').map(function (char) {
     return specials[char] || char;

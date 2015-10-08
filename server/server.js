@@ -42,7 +42,6 @@ io.sockets.on('connection', function(socket){
 io.of('/match').on('connection', function (socket) {
   console.log(socket.id + "connected to /match");
   socket.on('matching', function (data) {
-    console.log('server', data);
     matchCtrl.add(data, function (chatRoomId) {
       socket.emit('matched', chatRoomId);
     });
@@ -67,6 +66,13 @@ io.of('/chat').on('connection', function (socket) {
       io.sockets.connected[sock].leave(chatRoomId);
     }
   });
+});
+
+io.of('/meetup').on('connection', function (socket) {
+  console.log(socket.id + ' connected to /meetup');
+  socket.on('hi', function(data){
+    console.log('yessss');
+  })
 });
 
 // Authentication Routes

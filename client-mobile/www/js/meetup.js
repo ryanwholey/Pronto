@@ -1,7 +1,7 @@
 angular.module('Pronto.meetup',[])
 	.factory('MeetupFactory', ['$rootScope', function ($rootScope) {
 
-		var meetupList = [];
+		var meetupList = ['test'];
 
 		var addMeetup = function(meetupName) {
 			meetupList.push(meetupName);
@@ -33,17 +33,22 @@ angular.module('Pronto.meetup',[])
 	.controller('MeetupCtrl', ['$scope', 'SocketFactory', 'MeetupFactory', function ($scope, SocketFactory, MeetupFactory) {
 		var meetupFact = {};
 		$scope.meetupObj = {blurb:''};
+		meetupFact.socket = SocketFactory.connect('meetup', $scope.meetupObj.blurb);
 
 		$scope.createMeetup = function(){
 			console.log('create meetup');
-			meetupFact.socket = SocketFactory.connect('meetup', $scope.meetupObj.blurb);
 			MeetupFactory.addMeetup($scope.meetupObj.blurb);
 			$scope.meetupObj.blurb = '';
 		};
 
 		$scope.getMeetups = function(){
-			$scope.meetups = Factory.getMeetups();
+			$scope.meetups = MeetupFactory.getMeetups();
 		};
 
+		$scope.toMeetup = function() {
+			console.log(this.meetup);
+		}
+
+		$scope.getMeetups();
 
 	}]);

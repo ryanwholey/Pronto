@@ -6,6 +6,9 @@
     </ion-nav-buttons>
     <ion-content>
       <div class="meetup-container">
+      <ul ng-repeat='meetup in meetups'>
+        <li ng-click='toMeetup()'>{{meetup}}</li>
+      </ul>
         <form ng-submit="createMeetup()">
           <label class="item item-input message-input">
             <input type="text" ng-model='meetupObj.blurb' placeholder="Blurb your pronto meetup..."/>

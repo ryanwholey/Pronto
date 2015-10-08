@@ -1,14 +1,14 @@
-  <ion-view view-title="Pronto" ng-controller="EventsCtrl">
+  <ion-view view-title="Pronto" ng-controller="MeetupCtrl">
     <ion-nav-buttons side="primary">
       <button class="button button-energized"  ui-sref='chat'>
         Chat
       </button>
     </ion-nav-buttons>
     <ion-content>
-      <div class="events-container">
-        <form ng-submit="createEvent()">
+      <div class="meetup-container">
+        <form ng-submit="createMeetup()">
           <label class="item item-input message-input">
-            <input type="text" ng-model='eventObj.blurb' placeholder="Blurb your pronto event..."/>
+            <input type="text" ng-model='meetupObj.blurb' placeholder="Blurb your pronto meetup..."/>
           </label>
           <button class="button button-block button-calm" ng-click="submit">Send</button>
         </form>

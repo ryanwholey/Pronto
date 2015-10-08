@@ -22,6 +22,10 @@ MatchModel.prototype.leave = function(user) {
       if (this.users[i] === user){
         resolve(this.users.splice(i,1)[0]);
         this._size--;
+        console.log(this._size);
+        if (this._size) {
+          console.log("THERES NO ONE HERE AHHHHHHHHH");
+        }
       }
     }
     reject(new ReferenceError('User '+ user +' not found in lobby'));

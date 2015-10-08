@@ -15,7 +15,7 @@ var ChatroomSchema = new Schema({
   }],
   messages: [{
     type: ObjectId,
-    ref: 'messages'
+    $ref: 'messages'
   }],
   coords: {
     lat: String,

@@ -48,7 +48,8 @@ io.of('/match').on('connection', function (socket) {
   socket.on('matching', function (user) {
     var isFound = false;
     Chatroom.find({}, function (err, chatRooms) {
-      user.coords = user.coords || {lat: '25.5110665', lng: '-161.4412282' };
+      if (!user.coords) console.log("going to misfit island");
+      user.coords = user.coords || {lat: 37.7837406, lng: -122.40909314999999 };
       if (chatRooms.length !== 0) {
         for (var i = 0; i < chatRooms.length; i++) {
           if (coordmatcher._isMatch(user, chatRooms[i])) {
@@ -56,7 +57,6 @@ io.of('/match').on('connection', function (socket) {
             socket.emit('matched', chatRooms[i]._id);
             isFound = true;
           }
-          console.log('missed the if statement');
         }
       }
       if (!isFound) {
@@ -83,11 +83,15 @@ io.of('/chat').on('connection', function (socket) {
     });
   });
   socket.on('leaveChat', function (chatRoomId) {
-    socket.to(chatRoomId).broadcast.emit('leaveChat');
+    //socket.to(chatRoomId).broadcast.emit('leaveChat');
+    socket.leave(chatRoomId);
     var room = io.nsps['/chat'].adapter.rooms[chatRoomId];
-    for( var sock in room ) {
-      io.sockets.connected[sock].leave(chatRoomId);
+    if (!room) {
+      chatCtrl.removeChat(chatRoomId);
     }
+    // for( var sock in room ) {
+    //   io.sockets.connected[sock].leave(chatRoomId);
+    // }
   });
 });
 

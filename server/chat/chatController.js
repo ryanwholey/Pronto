@@ -32,7 +32,7 @@ chatController.addMessage = function (chatroomId, message) {
       if (err) {
         console.error(err);
       }
-      var messages = chatroom.messages;
+      var messages = chatroom ? chatroom.messages : [];
       messages.push(msg._id);
       Chatroom.findOneAndUpdate({_id: chatroomId}, {messages: messages}).exec();
     });
@@ -44,6 +44,16 @@ chatController.getMessages = function (chatroomId) {
     .findOne({_id: chatroomId})
     .populate("messages")
     .exec();
+};
+
+chatController.removeChat = function (chatroomId) {
+  Chatroom.remove({_id: chatroomId}, function (err) {
+    if (err) {
+      console.error(err);
+    } else {
+      console.log("removed chat room successfully");
+    }
+  });
 };
 
 module.exports = chatController;

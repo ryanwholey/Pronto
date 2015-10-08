@@ -14,11 +14,12 @@ chatController.createChat = function(users, location) {
   Chatroom.create({
     users: usersDbObj,
     messages: [],
-    location: JSON.stringify(location)
+    coords: location
   }, function(err, chatroom) {
     if(err){
       throw new Error(err);
     }
+    console.log('we did it');
     users.forEach(function(user) {
       user.join(chatroom._id);
     });

@@ -17,7 +17,10 @@ var ChatroomSchema = new Schema({
     type: ObjectId,
     ref: 'messages'
   }],
-  location: String
+  coords: {
+    lat: String,
+    lng: String
+  }
 });
 
 var ChatModel = {};

@@ -11,10 +11,14 @@ var io = require('socket.io').listen(server);
 server.listen(require('./config.js').port);
 
 // Internal Dependencies
+var CoordMatcher = require('./match/coordMatcher');
+var Chatroom = require('./chat/chatModel.js').Chatroom;
 var auth = require('./auth/auth');
 var matchCtrl = require('./match/matchController');
 var chatCtrl = require('./chat/chatController');
 var utils = require('./lib/utils');
+
+var coordmatcher = new CoordMatcher(2, 5);
 
 if( (process.env.NODE_ENV === 'development') || !(process.env.NODE_ENV) ){
   app.use(logger('dev'));
@@ -41,11 +45,29 @@ io.sockets.on('connection', function(socket){
 // Sockets Matching Namespace
 io.of('/match').on('connection', function (socket) {
   console.log(socket.id + "connected to /match");
-  socket.on('matching', function (data) {
-    console.log('server', data);
-    matchCtrl.add(data, function (chatRoomId) {
-      socket.emit('matched', chatRoomId);
+  socket.on('matching', function (user) {
+    var isFound = false;
+    Chatroom.find({}, function (err, chatRooms) {
+      user.coords = user.coords || {lat: '25.5110665', lng: '-161.4412282' };
+      if (chatRooms.length !== 0) {
+        for (var i = 0; i < chatRooms.length; i++) {
+          if (coordmatcher._isMatch(user, chatRooms[i])) {
+            console.log('found chatroom');
+            socket.emit('matched', chatRooms[i]._id);
+            isFound = true;
+          }
+          console.log('missed the if statement');
+        }
+      }
+      if (!isFound) {
+        console.log("user is joining lobby");
+        matchCtrl.add(user, function (chatRoomId) {
+          socket.emit('matched', chatRoomId);
+        });
+      }
+      
     });
+    
   });
 });
 

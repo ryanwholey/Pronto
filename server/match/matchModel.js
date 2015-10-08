@@ -32,10 +32,11 @@ MatchModel.prototype._add = function(user) {
   return new Promise(function(resolve, reject) {
     if(this._isDuplicate(user)){
       reject(new Error('User is already in the lobby'));
+    } else {
+      this.users.unshift(user);
+      this._size++;
+      resolve(user);
     }
-    this.users.unshift(user);
-    this._size++;
-    resolve(user);
   }.bind(this));
 };
 

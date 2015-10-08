@@ -1,12 +1,13 @@
 angular.module('Pronto.events',[])
 	.controller('EventsCtrl',  ['$scope', 'SocketFactory', function ($scope, SocketFactory) {
 		var eventFact = {};
-		$scope.eventVar = '';
-		eventFact.socket = SocketFactory.connect('event', $scope.blurb);
+		$scope.eventObj = {'blurb':''};
 
 		$scope.createEvent = function(){
 			console.log('create event');
-			console.log($scope.eventVar);
-			// $scope='';
-		}
+			eventFact.socket = SocketFactory.connect('event', $scope.eventObj.blurb);
+			console.log($scope.eventObj.blurb);
+			$scope.eventObj.blurb = '';
+		};
+		
 	}])

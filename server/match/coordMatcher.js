@@ -9,8 +9,6 @@ var coordMatcher = function(roomSize, maxDist) {
 coordMatcher.prototype.preMatch = function(user) {
   return this._getCoords(user.address)
     .then(function(coords) {
-      // console.log('>>>>>',user);
-      console.log(user.coords);
       return user;
     });
 };

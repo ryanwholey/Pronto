@@ -70,8 +70,9 @@ io.of('/chat').on('connection', function (socket) {
 
 io.of('/meetup').on('connection', function (socket) {
   console.log(socket.id + ' connected to /meetup');
-  socket.on('hi', function(data){
-    console.log('yessss');
+  socket.on('createMeetup', function(meetupName){
+    //chatCtrl.createChat([],meetupName);
+    socket.join(meetupName);
   })
 });
 

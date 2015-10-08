@@ -1,7 +1,7 @@
-angular.module('Pronto.meetup',[])
+angular.module('Pronto.meetup',['ui.router'])
 	.factory('MeetupFactory', ['$rootScope', function ($rootScope) {
 
-		var meetupList = ['test'];
+		var meetupList = ['event','event2'];
 
 		var addMeetup = function(meetupName) {
 			meetupList.push(meetupName);
@@ -30,7 +30,7 @@ angular.module('Pronto.meetup',[])
 		}
 
 	}])
-	.controller('MeetupCtrl', ['$scope', 'SocketFactory', 'MeetupFactory', function ($scope, SocketFactory, MeetupFactory) {
+	.controller('MeetupCtrl', ['$rootScope','$scope', '$state','SocketFactory', 'MeetupFactory', function ($scope, $rootScope, $state, SocketFactory, MeetupFactory) {
 		var meetupFact = {};
 		$scope.meetupObj = {blurb:''};
 		meetupFact.socket = SocketFactory.connect('meetup', $scope.meetupObj.blurb);
@@ -46,8 +46,9 @@ angular.module('Pronto.meetup',[])
 		};
 
 		$scope.toMeetup = function() {
-			console.log(this.meetup);
-		}
+			$rootScope.chatRoomId = this.meetupName;
+			$state.go('load');
+		};
 
 		$scope.getMeetups();
 

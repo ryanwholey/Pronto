@@ -38,5 +38,7 @@ angular.module('Pronto.match', [])
     AuthFactory.logOut();
   };
   $scope.connect();
+  console.log('called connect');
   $scope.submit();
+  console.log('called submit');
 }]);

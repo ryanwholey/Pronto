@@ -86,6 +86,18 @@ angular.module('Pronto', [
     url: '/chat',
     templateUrl: 'templates/chat.html',
     controller: 'ChatCtrl'
+  })
+
+  .state('meetupList', {
+    url: '/meetupList',
+    templateUrl: 'templates/meetupList.html',
+    controller: 'MeetupListCtrl'
+  })
+
+  .state('meetupChat', {
+    url: '/meetupChat/:room',
+    templateUrl: 'templates/meetupChat.html',
+    controller: 'MeetupChatCtrl'
   });
 
   // if none of the above states are matched, use this as the fallback

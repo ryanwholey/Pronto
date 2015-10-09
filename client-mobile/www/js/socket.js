@@ -15,5 +15,29 @@ angular.module('Pronto.socket', [])
     }
   };
 
+  var socket = io.connect();
+
+  socketFact.on = function(eventName, callback) {
+    socket.on(eventName, function() {
+      var args = arguments;
+      $rootScope.$apply(function()  {
+        if(callback)  {
+          callback.apply(socket, args);
+        }
+      });
+    });
+  };
+
+  socketFact.emit = function(eventName, data, callback) {
+    socket.emit(eventName, function() {
+      var args = arguments;
+      $rootScope.$apply(function()  {
+        if(callback)  {
+          callback.apply(socket, args);
+        }
+      });
+    });
+  };
+
   return socketFact;
 }]);

@@ -2,9 +2,12 @@ angular.module('Pronto.meetupChat', [])
 
 
 
-.controller('MeetupChatCtrl', ['$scope', '$stateParams', 'SocketFactory', function ($scope, $stateParams, SocketFactory) {
+.controller('MeetupChatCtrl', ['$scope', '$stateParams', 'SocketFactory', '$rootScope', function ($scope, $stateParams, SocketFactory, $rootScope) {
   $scope.messages = [];
-  $scope.messageObj = {};
+  $scope.messageObj = {
+    userName: $rootScope.user.name,
+    Message: ''
+  };
   $scope.getMessages = function() {
     SocketFactory.emit('getMessages');
   };
@@ -14,7 +17,7 @@ angular.module('Pronto.meetupChat', [])
   });
 
   $scope.postMessage = function(message)  {
-    SocketFactory.emit('msgOut', {message: message, room: $stateParams.room});
+    SocketFactory.emit('msgOut', {message: message, room: $stateParams.room, userName: $rootScope.user.name});
     $scope.messageObj.message = '';
   }
 }]);

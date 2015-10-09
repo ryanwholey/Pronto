@@ -35,10 +35,22 @@ app.use("/", express.static(__dirname + '/../client-web'));
 
 var messages = {};
 var meetupUsers = [];
+var meetups = [];
 
 
 // Sockets Connection
 io.sockets.on('connection', function(socket){
+
+  socket.on('getMeetups', function()  {
+    socket.emit('mtpIn', meetups);
+  });
+
+  socket.on('mtpOut', function(meetupName)  {
+    meetups.push(meetupName);
+    meetupUsers.forEach(function(socket) {
+      socket.emit('mtpIn', meetups);
+    });
+  });
 
   console.log('Socket '+ socket.id +' connected.');
   meetupUsers.push(socket);
@@ -49,9 +61,9 @@ io.sockets.on('connection', function(socket){
 
   socket.on('msgOut', function(messageObj)  {
     if (messages[messageObj.room]) {
-      messages[messageObj.room].push(messageObj.message);
+      messages[messageObj.room].push({userName : messageObj.userName, message : messageObj.message});
     } else  {
-      messages[messageObj.room] = [messageObj.message];
+      messages[messageObj.room] = [{userName : messageObj.userName, message : messageObj.message}];
     }
     meetupUsers.forEach(function(socket)  {
       socket.emit('msgIn', messages);

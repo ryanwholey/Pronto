@@ -35,13 +35,20 @@ angular.module('Pronto.meetupList', [])
   $scope.newRoom = {};
 
   $scope.getMeetups = function()  {
-    $scope.meetups = MeetupListFactory.getMeetups();
+    SocketFactory.emit('getMeetups');
+    // $scope.meetups = MeetupListFactory.getMeetups();
   };
 
+  SocketFactory.on('mtpIn', function(meetups) {
+    $scope.meetups = meetups;
+  });
+
   $scope.addMeetup = function()  {
-    MeetupListFactory.addMeetup($scope.newRoom.name);
+    SocketFactory.emit('mtpOut', $scope.newRoom.name);
     $scope.newRoom.name = '';
-    $scope.getMeetups();
+    // MeetupListFactory.addMeetup($scope.newRoom.name);
+    // $scope.newRoom.name = '';
+    // $scope.getMeetups();
   }
 
   $scope.meetupClick = function(roomName) {

@@ -9,7 +9,7 @@
         <div class="col">
           <div class="chatbox-container">
             <ul class="chatbox">
-              <li class="message-item" ng-repeat="message in messages"><span class="message">{{ message }}</span><br></li>
+              <li class="message-item" ng-repeat="message in messages"><span class="user">{{message.userName}}</span><br><span class="message">{{ message.message }}</span><br></li>
             </ul>
           </div>
           <form>

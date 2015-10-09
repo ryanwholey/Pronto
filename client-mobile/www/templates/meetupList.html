@@ -9,10 +9,10 @@
         <div class="col">
           <div class="chatbox-container">
             <ul class="listBox" >
-              <li class="message-item" ng-repeat="meetup in meetups.slice().reverse()" ng-click="meetupClick(meetup)"><span class="meetupList">{{ meetup }} </span><br></li>
+              <li class="list-item" ng-repeat="meetup in meetups.slice().reverse() track by $index" ng-click="meetupClick(meetup)"><span>{{ meetup }} </span><br></li>
             </ul>
           </div>
-          <form>
+          <form ng-submit='addMeetup()'>
             <label class="item item-input message-input">
               <input type="text" ng-model="newRoom.name" placeholder="Create a room ..."/>
             </label>

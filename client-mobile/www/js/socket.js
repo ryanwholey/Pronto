@@ -4,7 +4,7 @@ angular.module('Pronto.socket', [])
   var socketFact = {};
 
   //hacky way to make this work in developer environments at specified port number
-  socketFact.host = "localhost:3000";
+  socketFact.host = "10.8.4.153:3000";
 
   //socketFact.host = $location.host() !== "localhost" ? $location.host() : "localhost:3000";
 

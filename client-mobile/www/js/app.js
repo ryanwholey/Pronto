@@ -17,7 +17,7 @@ angular.module('Pronto', [
 
 .run(function($ionicPlatform, $rootScope) {
   $rootScope.user = {};
-  $rootScope.host = 'http://localhost:3000'; // 10.8.2.104
+  $rootScope.host = 'http://10.8.4.153:3000'; // 10.8.2.104
   $ionicPlatform.ready(function() {
     // Hide the accessory bar by default (remove this to show the accessory bar above the keyboard
     // for form inputs)

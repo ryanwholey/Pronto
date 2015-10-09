@@ -9,14 +9,14 @@
         <div class="col">
           <div class="chatbox-container">
             <ul class="chatbox">
-              <li class="message-item" ng-repeat="message in messages"><span class="user">{{message.userName}}</span><br><span class="message">{{ message.message }}</span><br></li>
+              <li class="message-item" ng-repeat="message in messages track by $index"><span class="user">{{message.userName}}</span><br><span class="message">{{ message.message }}</span><br></li>
             </ul>
           </div>
-          <form>
+          <form ng-submit='postMessage(messageObj.message)'>
             <label class="item item-input message-input">
               <input type="text" ng-model="messageObj.message" placeholder="Send a message ..."/>
             </label>
-              <input type="button" class="button button-block button-calm" ng-click="postMessage(messageObj.message)" value='Send'></input>
+              <input type="button" class="button button-block button-calm" value='Send' ng-click='postMessage(messageObj.message)'></input>
           </form>
         </div>
       </div>

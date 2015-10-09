@@ -1,15 +1,15 @@
 <ion-view view-title="Pronto" ng-controller="MeetupListCtrl" ng-init="getMeetups()">
     <ion-nav-buttons side="primary">
-      <button class="button button-energized">
-        Leave
+      <button class="button button-energized" ui-sref='chat'>
+        Local
       </button>
     </ion-nav-buttons>
     <ion-content>
-      <div class="row row-bottom">
+      <div class="row row-top">
         <div class="col">
           <div class="chatbox-container">
-            <ul class="chatbox" ng-repeat="meetup in meetups.slice().reverse()">
-              <li class="message-item" ng-click="meetupClick(meetup)"><span class="meetupList">{{ meetup }} </span><br></li>
+            <ul class="listBox" >
+              <li class="message-item" ng-repeat="meetup in meetups.slice().reverse()" ng-click="meetupClick(meetup)"><span class="meetupList">{{ meetup }} </span><br></li>
             </ul>
           </div>
           <form>

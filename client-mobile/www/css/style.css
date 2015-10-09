@@ -84,9 +84,12 @@ div.image {
 
 
 /* Chat View */
-.chatbox {
+.listbox {
     position:absolute;
-    bottom: 0px;
+}
+.chatbox {
+  position:absolute;
+  bottom: 0px;
 }
 .message-input {
     margin-top: 10px;

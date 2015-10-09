@@ -1,4 +1,4 @@
-<ion-view view-title="Pronto" ng-controller="MeetupListCtrl">
+<ion-view view-title="Pronto" ng-controller="MeetupListCtrl" ng-init="getMeetups()">
     <ion-nav-buttons side="primary">
       <button class="button button-energized">
         Leave
@@ -8,15 +8,15 @@
       <div class="row row-bottom">
         <div class="col">
           <div class="chatbox-container">
-            <ul class="chatbox">
-              <li class="message-item" ng-repeat="meetup in meetups.slice().reverse()"><span class="meetupList">{{ meetup.name }} </span><br></li>
+            <ul class="chatbox" ng-repeat="meetup in meetups.slice().reverse()">
+              <li class="message-item" ng-click="meetupClick(meetup)"><span class="meetupList">{{ meetup }} </span><br></li>
             </ul>
           </div>
           <form>
             <label class="item item-input message-input">
-              <input type="text" ng-model="newRoom" placeholder="Create a room ..."/>
+              <input type="text" ng-model="newRoom.name" placeholder="Create a room ..."/>
             </label>
-            <input type='button' class="button button-block button-calm" ng-click='createRoom(newRoom)' value="Post"></input>
+            <input type='button' class="button button-block button-calm" ng-click='addMeetup()' value="Post"></input>
           </form>
         </div>
       </div>

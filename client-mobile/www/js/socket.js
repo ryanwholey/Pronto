@@ -1,10 +1,11 @@
 angular.module('Pronto.socket', [])
 
-.factory('SocketFactory', ['$location', function ($location) {
+.factory('SocketFactory', ['$location', '$rootScope', function ($location, $rootScope) {
   var socketFact = {};
 
   //hacky way to make this work in developer environments at specified port number
-  socketFact.host = "10.8.2.104:3000";
+  socketFact.host = "localhost:3000";
+
   //socketFact.host = $location.host() !== "localhost" ? $location.host() : "localhost:3000";
 
   socketFact.connect = function (nameSpace) {
@@ -15,7 +16,7 @@ angular.module('Pronto.socket', [])
     }
   };
 
-  var socket = io.connect();
+  var socket = io.connect(socketFact.host);
 
   socketFact.on = function(eventName, callback) {
     socket.on(eventName, function() {
@@ -29,7 +30,7 @@ angular.module('Pronto.socket', [])
   };
 
   socketFact.emit = function(eventName, data, callback) {
-    socket.emit(eventName, function() {
+    socket.emit(eventName, data, function() {
       var args = arguments;
       $rootScope.$apply(function()  {
         if(callback)  {

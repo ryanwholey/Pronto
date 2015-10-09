@@ -33,9 +33,31 @@ app.use(session({
 }));
 app.use("/", express.static(__dirname + '/../client-web'));
 
+var messages = {};
+var meetupUsers = [];
+
+
 // Sockets Connection
 io.sockets.on('connection', function(socket){
+
   console.log('Socket '+ socket.id +' connected.');
+  meetupUsers.push(socket);
+
+  socket.on('getMessages', function(){
+    socket.emit('msgIn', messages);
+  });
+
+  socket.on('msgOut', function(messageObj)  {
+    if (messages[messageObj.room]) {
+      messages[messageObj.room].push(messageObj.message);
+    } else  {
+      messages[messageObj.room] = [messageObj.message];
+    }
+    meetupUsers.forEach(function(socket)  {
+      socket.emit('msgIn', messages);
+    })
+  })
+
   socket.on('disconnect', function(){
     console.log('Socket '+ socket.id +' disconnected.');
     socket.disconnect();

@@ -1,4 +1,4 @@
-  <ion-view view-title="Pronto" ng-controller="MeetupChatCtrl">
+  <ion-view view-title="Pronto" ng-controller="MeetupChatCtrl" ng-init="getMessages()">
     <ion-nav-buttons side="primary">
       <button class="button button-energized">
         Leave
@@ -9,14 +9,14 @@
         <div class="col">
           <div class="chatbox-container">
             <ul class="chatbox">
-              <li class="message-item" ng-repeat="message in messages"><span class="user">{{ message.userName }} </span><br><span class="message">{{ message.text }}</span></li>
+              <li class="message-item" ng-repeat="message in messages"><span class="message">{{ message }}</span><br></li>
             </ul>
           </div>
           <form>
             <label class="item item-input message-input">
-              <input type="text" ng-model="messageInput" placeholder="Send a message ..."/>
+              <input type="text" ng-model="messagesObj.message" placeholder="Send a message ..."/>
             </label>
-            <input type="button" class="button button-block button-calm" ng-click="postMessage(messageInput)" value='Send'></input>
+              <input type="button" class="button button-block button-calm" ng-click="postMessage(messagesObj.message)" value='Send'></input>
           </form>
         </div>
       </div>

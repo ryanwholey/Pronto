@@ -37,6 +37,15 @@ angular.module('Pronto.chat',[])
     text: ''
   };
 
+  var socket = io.connect('10.8.4.153:3000/chat');
+
+   socket.on('numUsers', function(numUsers){
+     console.log(numUsers);
+     $scope.$apply(function(){
+       $scope.numUsers = numUsers.num;
+     });
+   });
+
   $scope.leaveChat = function (logout) {
     $scope.messages = [];
     $rootScope.disableButton = false;

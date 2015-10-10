@@ -8,6 +8,7 @@
       <div class="row row-bottom" ng-init="loadChat()">
         <div class="col">
           <div class="chatbox-container">
+            <span class='numUser'>{{numUsers}} in chatroom</span>
             <ul class="chatbox">
               <li class="message-item" ng-repeat="message in messages track by $index"><span class="user">{{ message.userName }} </span><br><span class="message">{{ message.text }}</span></li>
             </ul>

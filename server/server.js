@@ -110,6 +110,9 @@ io.of('/chat').on('connection', function (socket) {
   console.log(socket.id + "connected to /chat");
   socket.on('loadChat', function (chatRoomId) {
     socket.join(chatRoomId);
+    var room = io.nsps['/chat'].adapter.rooms[chatRoomId];
+    var num = Object.keys(room).length;
+    io.of('/chat').emit('numUsers', {num: num});
     socket.on('message', function (message) {
       console.log('Emitted from client to server');
       socket.to(chatRoomId).broadcast.emit('message', message);
@@ -120,6 +123,8 @@ io.of('/chat').on('connection', function (socket) {
     //socket.to(chatRoomId).broadcast.emit('leaveChat');
     socket.leave(chatRoomId);
     var room = io.nsps['/chat'].adapter.rooms[chatRoomId];
+    var num = Object.keys(room).length;
+    socket.to(chatRoomId).broadcast.emit('numUsers', {num: num});
     if (!room) {
       chatCtrl.removeChat(chatRoomId);
     }
